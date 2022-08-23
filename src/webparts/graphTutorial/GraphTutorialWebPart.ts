@@ -48,7 +48,7 @@ export default class GraphTutorialWebPart extends BaseClientSideWebPart<IGraphTu
           .select('subject,organizer,start,end,location,attendees')
           .orderby('start/dateTime')
           .top(25)
-          .get((error: any, events: any) => {
+          .get((error: any, events: any) => { // eslint-disable-line
             this.domElement.innerHTML = `
             <div class="${ styles.graphTutorial }">
               <div class="${ styles.container }">
@@ -64,8 +64,14 @@ export default class GraphTutorialWebPart extends BaseClientSideWebPart<IGraphTu
             } else {
               this.renderCalendarView(events.value);
             }
-          });
-      });
+          })
+          .catch((reason: Error) => {
+            this.renderGraphError(reason);
+          });  
+      })
+      .catch((reason: Error) => {
+        this.renderGraphError(reason);
+      });  
   }
   // </renderSnippet>
   /*
@@ -76,8 +82,8 @@ export default class GraphTutorialWebPart extends BaseClientSideWebPart<IGraphTu
   } */
 
   // <renderGraphErrorSnippet>
-  private renderGraphError(error: any): void {
-    const viewContainer = this.domElement.querySelector('#calendarView');
+  private renderGraphError(error: any): void { // eslint-disable-line
+    const viewContainer = this.domElement.querySelector('#calendarView'); 
 
     // Basic error display
     viewContainer.innerHTML = `
