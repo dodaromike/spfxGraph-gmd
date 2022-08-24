@@ -1,7 +1,9 @@
-import { Providers, SharePointProvider, MgtAgenda } from '@microsoft/mgt';
-import { MSGraphClientV3 } from '@microsoft/sp-http';
 import * as MicrosoftGraph from '@microsoft/microsoft-graph-types';
 import { startOfWeek, endOfWeek, setDay, set } from 'date-fns';
+import { Providers, SharePointProvider, MgtAgenda } from '@microsoft/mgt';
+import { MSGraphClientV3 } from '@microsoft/sp-http';
+
+
 import { Version } from '@microsoft/sp-core-library';
 import {
   IPropertyPaneConfiguration,
@@ -73,13 +75,6 @@ export default class GraphTutorialWebPart extends BaseClientSideWebPart<IGraphTu
         this.renderGraphError(reason);
       });  
   }
-  // </renderSnippet>
-  /*
-  protected onInit(): Promise<void> {
-    this._environmentMessage = this._getEnvironmentMessage();
-
-    return super.onInit();
-  } */
 
   // <renderGraphErrorSnippet>
   private renderGraphError(error: any): void { // eslint-disable-line
